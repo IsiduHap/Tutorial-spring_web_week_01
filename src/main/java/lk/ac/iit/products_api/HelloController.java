@@ -2,6 +2,7 @@ package lk.ac.iit.products_api;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -21,6 +22,7 @@ public class HelloController {
     public String goodbye() {
         return "Goodbye from Spring Boot!";
     }
+
 
 
 

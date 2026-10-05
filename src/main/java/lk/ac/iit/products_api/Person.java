@@ -1,14 +1,34 @@
 package lk.ac.iit.products_api;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
 public class Person {
-    private String email="spring@gmail.com";
-    @GetMapping("/getEmail")
 
-    public String  getEmail(){
-        return this.email;
+    private String email;
+    private String name;
+
+    public Person(){
+
+    }
+
+    public Person(String email, String name){
+        this.email=email;
+        this.name=name;
+
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
     }
 }
+
