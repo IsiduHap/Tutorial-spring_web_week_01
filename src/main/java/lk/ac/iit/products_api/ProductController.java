@@ -1,19 +1,46 @@
 package lk.ac.iit.products_api;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/product")
+import java.awt.color.ProfileDataException;
+import java.util.ArrayList;
+
+@RequestMapping("/products")
 @RestController
 public class ProductController {
 
-    @GetMapping("/{id}")
-    public Product product(@PathVariable("id") Long id ){
-        return new Product(id,"Laptop",999.9);
+    @Autowired
+    private ProductService productService;
 
+    @GetMapping()
+    public ArrayList<Product> getAllProducts(){
+        return productService.getAllProducts();
+    }
+
+    @GetMapping("/{id}")
+
+    public Product getProduct(@PathVariable Long id){
+
+        return productService.getProductById(id).orElse(null);
+
+    }
+    @PostMapping()
+    public void addProduct(@RequestBody Product product){
+        productService.addProduct(product);
+
+    }
+
+    @GetMapping("/byName")
+    public Product findByName(@RequestParam String name){
+        return productService.findByName(name).orElse(null);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteProduct(@PathVariable Long id){
+        return productService.deleteProduct(id);
     }
 
 
 }
+
